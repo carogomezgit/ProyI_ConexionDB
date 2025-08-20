@@ -57,13 +57,13 @@ public class AutoDAO {
     Statement st = null;
     ResultSet rs = null;
 
+    List<Auto> listaAutos = new java.util.ArrayList<>();
     try {
       // 4. crear instruccion
       st = conn.createStatement();
       // 5. ejecutar consulta y guarda el resultado en resulset
       rs = st.executeQuery(sql);
 
-      List<Auto> listaAutos = new java.util.ArrayList<>();
       // 6. recorrer el resultset y guardar los datos en una lista
       while(rs.next()) {
         Auto auto = new Auto();
@@ -88,6 +88,6 @@ public class AutoDAO {
       throw new RuntimeException(e);
     }
 
-    return null;
+    return listaAutos;
   }
 }
