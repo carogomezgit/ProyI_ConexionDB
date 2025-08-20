@@ -1,4 +1,4 @@
-package org.ies63.progI.entities;
+package org.progI.entities;
 
 import java.util.Objects;
 
