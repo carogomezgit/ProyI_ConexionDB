@@ -12,10 +12,12 @@ import java.util.List;
  * Hello world!
  *
  */
+
 public class App {
+
   public static void main(String[] args) {
     System.out.println("Hello World!");
-    // Connection miConexion = AdministradorConexion.obtenerConexion();
+    Connection miConexion = AdministradorConexion.obtenerConexion();
 
     Auto auto = new Auto("CCCCCC", "blanco", 2025, 897, Marca.Honda, "Fit");
 

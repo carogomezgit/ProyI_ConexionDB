@@ -15,7 +15,7 @@ public class AdministradorConexion {
     // String dbCadenaConexion = "jdbc:mysql://localhost:3306/progAutos";
     String dbCadenaConexion = "jdbc:mysql://127.0.0.1:3306/?user=root";
 
-    String dbUsuario = "root";
+    String usuarioDB = "root";
     // nom usuarioBD
     String dbPass = "root";
     // pass bd
@@ -25,7 +25,7 @@ public class AdministradorConexion {
     try {
       Class.forName(dbDriver);
 
-      conn = DriverManager.getConnection(dbCadenaConexion, dbUsuario, dbPass);
+      conn = DriverManager.getConnection(dbCadenaConexion, usuarioDB, dbPass);
 
     } catch (ClassNotFoundException e) {
       System.out.println("No se encontro el driver de la BD");
