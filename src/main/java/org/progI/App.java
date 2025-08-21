@@ -19,7 +19,7 @@ public class App {
     System.out.println("Hello World!");
     Connection miConexion = AdministradorConexion.obtenerConexion();
 
-    Auto auto = new Auto("CCCCCC", "blanco", 2025, 897, Marca.Honda, "Fit");
+    Auto auto = new Auto("XXYYZZ", "blanco", 2025, 897, Marca.Honda, "Fit");
 
     // guardo en la BD
     AutoDAO autoDAO = new AutoDAO();
