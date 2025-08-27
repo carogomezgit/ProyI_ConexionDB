@@ -47,7 +47,6 @@ public class AutoDAO {
         System.out.println("Error al crear el statement");
       }
     }
-
   }
 
   public boolean existsById(int id) {
@@ -106,8 +105,6 @@ public class AutoDAO {
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
-
-
   }
 
   public List<Auto> findAll() {
