@@ -1,11 +1,9 @@
 package org.progI.dao;
 
-import com.mysql.cj.protocol.Resultset;
 import org.progI.configuracion.AdministradorConexion;
 import org.progI.entities.Auto;
 import org.progI.entities.Marca;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +16,6 @@ public class AutoDAO {
 
   public void update(Auto auto) {
     // establecer conexion
-
     // solo si el auto existe lo modifico
     if (this.existsById(auto.getIdAuto())) {
       //
@@ -32,6 +29,7 @@ public class AutoDAO {
           "WHERE idAuto = " + auto.getIdAuto();
 
       conn = AdministradorConexion.obtenerConexion();
+
       // Se crea un statement
       Statement st = null;
 
@@ -39,6 +37,7 @@ public class AutoDAO {
         // ejecuto
         st = conn.createStatement(); // CREO STATEMENT
         st.execute(sql);
+
         //cierro
         st.close();
         conn.close();
@@ -53,10 +52,12 @@ public class AutoDAO {
     // establecer conexion
     conn = AdministradorConexion.obtenerConexion();
     String sql = "SELECT * FROM autos WHERE idAuto = " + id;
+
     // Se crea un statement
     Statement st = null;
     ResultSet rs = null;
     boolean existe = false;
+
     try {
       st = conn.createStatement(); // CREO STATEMENT
       rs = st.executeQuery(sql); //EJECUTO CONSULTA
@@ -64,10 +65,12 @@ public class AutoDAO {
       if (rs.next()) {
         existe = true;
       }
+
       // CIERRO RESULTSET Y STATEMENT
       rs.close();
       st.close();
       conn.close();
+
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
@@ -93,15 +96,15 @@ public class AutoDAO {
 
     // paso 3 crear instruccion
     Statement st = null;
+
     try {
       st = conn.createStatement();
-
-      // paso 4 ejecutar instruccion
-      st.execute(sql);
+      st.execute(sql); // paso 4 ejecutar instruccion
 
       // paso 5 cerrar conexion
       st.close();
       conn.close();
+
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
@@ -122,12 +125,12 @@ public class AutoDAO {
     List<Auto> listaAutos = new java.util.ArrayList<>();
 
     try {
-      // paso 3 crear instruccion
+      // paso 4 crear instruccion
       st = conn.createStatement();
-      // paso 4 ejecutar consulta y guarda el resultado en resultset
+      // paso 5 ejecutar consulta y guarda el resultado en resultset
       rs = st.executeQuery(sql);
 
-      // paso 5 recorrer el resultset y guardar los autos en una lista
+      // paso 6 recorrer el resultset y guardar los autos en una lista
       while (rs.next()) {
         Auto auto = new Auto();
         auto.setIdAuto(rs.getInt("idAuto"));
@@ -141,17 +144,15 @@ public class AutoDAO {
         listaAutos.add(auto);
       }
 
-      // paso 6 cerrar el resultset y statement
+      // paso 7 cerrar el resultset y statement
       rs.close();
       st.close();
       conn.close();
-
 
     } catch (SQLException e) {
       System.out.println("Error al crear el statement");
       throw new RuntimeException(e);
     }
-
 
     return listaAutos;
   }
@@ -160,12 +161,16 @@ public class AutoDAO {
 
     conn= AdministradorConexion.obtenerConexion();
     String sql = "DELETE FROM autos WHERE idAuto = " + idauto;
-    Statement st=null;
+
+    Statement st = null;
+
     try {
-      st=conn.createStatement(); //creo statement
+      st = conn.createStatement(); //creo statement
       st.execute(sql); //ejecuto la consulta
-      st.close(); //cierro statement
-      conn.close();// cierro conexion
+
+      // cierro statement y conexion
+      st.close();
+      conn.close();
 
     } catch (SQLException e) {
       System.out.println("Error al crear el statement");
@@ -177,13 +182,16 @@ public class AutoDAO {
     // establecer conexion
     conn = AdministradorConexion.obtenerConexion();
     String sql = "SELECT * FROM autos WHERE idAuto = " + id;
+
     // Se crea un statement
     Statement st = null;
     ResultSet rs = null;
     Auto auto = new Auto();
+
     try {
       st = conn.createStatement(); // CREO STATEMENT
-      rs = st.executeQuery(sql); //EJECUTO CONSULTA
+      rs = st.executeQuery(sql); // EJECUTO CONSULTA
+
       // SI LA CONSULTA DEVUELVE AL MENOS UN REGISTRO, EXISTE
       if (rs.next()) {
         // asigno los datos a auto
@@ -195,10 +203,12 @@ public class AutoDAO {
         auto.setKilometraje(rs.getInt("kilometraje"));
         auto.setModelo(rs.getString("modelo"));
       }
+
       // CIERRO RESULTSET Y STATEMENT
       rs.close();
       st.close();
       conn.close();
+
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }

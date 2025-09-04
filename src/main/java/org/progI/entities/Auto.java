@@ -11,28 +11,44 @@ public class Auto implements Comparable {
 	private int kilometraje;
 	private Marca marca;
 	private String modelo;
-	
+	private Cliente cliente;
+  private Seguro seguro;
 	
 	
 	public Auto(){
-		idAuto=-1;
+    this.cliente = new Cliente();
+    this.seguro = new Seguro();
 	}
 	
-	
-	public Auto(String patente){
+	public Auto(String patente) {
 		idAuto=-1;
-		this.patente= patente;		
+		this.patente = patente;
+    this.cliente = new Cliente();
+    this.seguro = new Seguro();
 	}
 
-	public Auto(String patente, String color, int anio, int kilometraje, Marca marca, String modelo) {
-		super();
+	public Auto(String patente, String color, int anio, int kilometraje, Marca marca, String modelo, Cliente cliente, Seguro seguro) {
 		this.patente = patente;
 		this.color = color;
 		this.anio = anio;
 		this.kilometraje = kilometraje;
 		this.marca = marca;
 		this.modelo = modelo;
+    this.cliente = cliente;
+    this.seguro = seguro;
 	}
+
+  public Auto(int idAuto, String patente, String color, int anio, int kilometraje, Marca marca, String modelo, Cliente cliente, Seguro seguro) {
+    this.idAuto = idAuto;
+    this.patente = patente;
+    this.color = color;
+    this.anio = anio;
+    this.kilometraje = kilometraje;
+    this.marca = marca;
+    this.modelo = modelo;
+    this.cliente = null;
+    this.seguro = null;
+  }
 
 	public int getIdAuto() {
 		return idAuto;
@@ -57,9 +73,6 @@ public class Auto implements Comparable {
 	public String getColor() {
 		return color;
 	}
-
-
-
 
 
 	public void setColor(String color) {
@@ -107,10 +120,31 @@ public class Auto implements Comparable {
 	}
 
 
-	@Override
+  public Cliente getCliente() {
+    return cliente;
+  }
+
+
+  public void setCliente(Cliente cliente) {
+    this.cliente = cliente;
+  }
+
+
+  public Seguro getSeguro() {
+    return seguro;
+  }
+
+
+  public void setSeguro(Seguro seguro) {
+    this.seguro = seguro;
+  }
+
+
+  @Override
 	public String toString() {
 		return "Auto [" +  idAuto +"  patente=" + patente + ", color=" + color + ", anio=" + anio + ", kilometraje=" + kilometraje
-				+ ", marca=" + marca + ", modelo=" + modelo + "]";
+				+ ", marca=" + marca + ", modelo=" + modelo + "" +
+        this.cliente.toString() + " " + this.seguro.toString() + "]";
 	}
 
 
@@ -142,11 +176,7 @@ public class Auto implements Comparable {
 		
 		if(resultado ==0)
 			resultado= Integer.compare(this.kilometraje, otroAuto.kilometraje);
-			
-		
+
 		return resultado;
 	}
-	
-	
-	
 }

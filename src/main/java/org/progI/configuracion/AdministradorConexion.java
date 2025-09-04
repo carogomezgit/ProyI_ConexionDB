@@ -11,14 +11,12 @@ public class AdministradorConexion {
     // 4 datos de conexion
     String dbDriver = "com.mysql.cj.jdbc.Driver";
     // cadena conexion a mi BD
-
     // String dbCadenaConexion = "jdbc:mysql://localhost:3306/progAutos";
     String dbCadenaConexion = "jdbc:mysql://localhost:3306/progautos";
-
-    String dbUsuario = "root";
     // nom usuarioBD
-    String dbPass = "root";
+    String dbUsuario = "root";
     // pass bd
+    String dbPass = "root";
 
     Connection conn = null;
 
